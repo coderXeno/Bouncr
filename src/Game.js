@@ -3,16 +3,8 @@ import "./Game.css";
 
 export default function Game(){
 
-    let [difficulty,setDifficulty] = useState();
-    let [ballSpeed,setBallSpeed] = useState();
-
-    function handleDifficultyChange(event){
-        setDifficulty(event.target.value);
-    }
-
     function handleGameStart(event){
         event.preventDefault();
-        setBallSpeed(difficulty);
         canvas = document.getElementById('gameCanvas');
         canvasContext = canvas.getContext('2d');
     
@@ -33,8 +25,8 @@ export default function Game(){
 
     var canvas;
     var canvasContext;
-    var ballX = ballSpeed;
-    var ballY = ballSpeed;
+    var ballX = 20;
+    var ballY = 20;
     var ballSpeedX = 10;
     var ballSpeedY = 4;
 
@@ -187,18 +179,7 @@ export default function Game(){
 
     return(
         <div id="root">
-            <form onSubmit={handleGameStart}>
-                <select onChange={handleDifficultyChange}>
-                    <option>--Choose a difficulty level--</option>
-                    <option value="30">Easy</option>
-                    <option value="50">Medium</option>
-                    <option value="70">Hard</option>
-                    <option value="85">Devilish</option>
-                </select>
-                <button type="submit">Start Game</button>
-            </form>
-            
-            {ballSpeed ? <canvas id="gameCanvas" width="800" height="600"></canvas> : null}
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
         </div>
     );
 }
